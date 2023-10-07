@@ -6,7 +6,7 @@ function App() {
   // *************************** //
   // ******** NUM STATE ******** //
   // *************************** //
-  const [num, setNum] = useState(0); // the 0 is the intial value of age, ie let age=0
+  const [num, setNum] = useState(0); // the 0 is the intial value of num, ie let num=0
   const increaseNum = () => {
     setNum(num + 1);
   };
