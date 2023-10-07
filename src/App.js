@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import axios from 'axios';
 // a state is like a variable that stores data
 function App() {
 
@@ -30,7 +31,39 @@ function App() {
   const toggleText = () => {
     setShowText(!showText);
   }
-  
+
+  // *************************** //
+  // ******** GET DEF ********** //
+  // *************************** //
+  async function getDef(search) {
+    search = document.getElementById("searchWord").value;
+    console.log(search);
+    const options = {
+      method: 'GET',
+      url: `https://wordsapiv1.p.rapidapi.com/words/${search}/definitions`,
+      headers: {
+        'X-RapidAPI-Key': '367f1583eemshdf5be849d690df3p19a39fjsna5a5002bcdd1',
+        'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+      }
+    };
+    
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // *************************** //
+  // ******* INPUT STATE 2****** //
+  // *************************** //
+  const [inputValue2, setInputValue2] = useState(""); // empty string
+  const handleInputChange2 = (event) => {
+    console.log(event.target.value);
+    setInputValue2(event.target.value);
+  };
+
   return (
     <div className="App">
       {num}
@@ -49,14 +82,22 @@ function App() {
 
       <p>
         {
-        //<button
+          //<button
           //onClick={() => {
-            //setShowText(!showText);
+          //setShowText(!showText);
           //}}>
           //Show/Hide</button>
         }
         <button onClick={toggleText}>Show/Hide</button>
         {showText && <h1>MEOW</h1>}
+      </p>
+
+      <p>
+        <input id="searchWord" type="text" onChange={handleInputChange2}></input>
+      </p>
+
+      <p>
+        <button onClick={getDef}>Get Definition</button>
       </p>
     </div>
   );
