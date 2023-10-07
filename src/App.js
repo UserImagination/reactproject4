@@ -6,12 +6,12 @@ function App() {
   // *************************** //
   // ******** NUM STATE ******** //
   // *************************** //
-  const [age, setNum] = useState(0); // the 0 is the intial value of age, ie let age=0
+  const [num, setNum] = useState(0); // the 0 is the intial value of age, ie let age=0
   const increaseNum = () => {
-    setNum(age + 1);
+    setNum(num + 1);
   };
   const decreaseNum = () => {
-    setNum(age - 1);
+    setNum(num - 1);
   }
 
   // *************************** //
@@ -33,7 +33,7 @@ function App() {
   
   return (
     <div className="App">
-      {age}
+      {num}
       <p>
         <button onClick={increaseNum}>Increase</button>
       </p>
