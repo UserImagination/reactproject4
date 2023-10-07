@@ -42,7 +42,7 @@ function App() {
       method: 'GET',
       url: `https://wordsapiv1.p.rapidapi.com/words/${search}/definitions`,
       headers: {
-        'X-RapidAPI-Key': '367f1583eemshdf5be849d690df3p19a39fjsna5a5002bcdd1',
+        'X-RapidAPI-Key': 'api key',
         'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
       }
     };
