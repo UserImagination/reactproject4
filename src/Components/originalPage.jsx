@@ -13,6 +13,7 @@ class OriginalPage extends React.Component {
       inputValue: '',
       show: true,
     }
+    this.getDef = this.getDef.bind(this);
   }
 
 // *************************** //
@@ -41,8 +42,13 @@ class OriginalPage extends React.Component {
 // ******** HIDE STATE ******* //
 // *************************** //
 //const [showText, setShowText] = useState(true); // boolean
-  toggleText = (setShowText, showText) => {
-    this.setState({show: setShowText(!showText)});
+  toggleText = () => {
+    if(this.state.show === true) {
+      this.setState({show: false})
+    }
+    if(this.state.show === false) {
+      this.setState({show: true})
+    }
   }
 
 // *************************** //
@@ -59,15 +65,10 @@ class OriginalPage extends React.Component {
         'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
       }
     };
-
-    try {
-      const response = await axios.request(options).then(res => this.setState({data: res.data}));
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+      axios.request(options).then((response) => {
+       this.setState({data: response.data})
+      })
   }
-
 // *************************** //
 // ******* INPUT STATE 2****** //
 // *************************** //
@@ -94,18 +95,17 @@ class OriginalPage extends React.Component {
           <p>{this.state.inputValue}</p>
         </p>
 
-        {/*<p>*/}
-        {/*  {*/}
-        {/*    //<button*/}
-        {/*    //onClick={() => {*/}
-        {/*    //setShowText(!showText);*/}
-        {/*    //}}>*/}
-        {/*    //Show/Hide</button>*/}
-        {/*  }*/}
-        {/*  <button onClick={this.toggleText}>Show/Hide</button>*/}
-        {/*  {this.showText && <h1>MEOW</h1>}*/}
-        {/*</p>*/}
-
+        <p>
+          {
+            //<button
+            //onClick={() => {
+            //setShowText(!showText);
+            //}}>
+            //Show/Hide</button>
+          }
+          <button onClick={this.toggleText}>Show/Hide</button>
+          {this.state.show && <h1>MEOW</h1>}
+        </p>
         <p>
           <input id="searchWord" type="text" onChange={this.handleInputChange2}></input>
         </p>
