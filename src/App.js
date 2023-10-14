@@ -5,6 +5,7 @@ import OriginalPage from "./Components/originalPage";
 import NewFile from "./Components/newFile";
 
 // a state is like a variable that stores data
+
 const App = () => {
   
   return (
