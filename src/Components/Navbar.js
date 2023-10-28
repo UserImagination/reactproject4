@@ -2,15 +2,11 @@ import "./NavbarStyles.css";
 import {Link} from 'react-router-dom';
 
 
-const Person = (props) => {
-  return (
-    <div>
-    <p><h6>{props.name}{props.lastname}</h6></p>
-    </div>
-  );
-}
-
-function Navbar() {
+// const Person = (props) => {
+//   return { firstname: props.firstname, lastname: props.lastname }
+// }
+// debugger;
+function Navbar(props) {
   return (
     <>
       <nav>
@@ -86,9 +82,9 @@ function Navbar() {
 
         <div className="Person">
           <p>Logged as </p>
-          <p><Person name="username" />
-          <Person lastname="usersurname" />
-          </p>
+          <p>{props.username}</p>
+          {/*<p>{props.Person.lastname}</p>*/}
+          
         </div>
         <div id="mobile">
           <i className="fas fa-bars"></i>

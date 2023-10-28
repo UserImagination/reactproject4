@@ -14,6 +14,8 @@ import PropTypes from 'prop-types';
      
 //   }
 
+
+
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/login', {
     method: 'POST',
@@ -25,10 +27,11 @@ async function loginUser(credentials) {
     .then(data => data.json())
  }
  
- export default function Login({ setToken }) {
+ export default function Login(props, { setToken }) {
    const [name, setUserName] = useState();
    const [password, setPassword] = useState();
  
+   props.func(useState[0]);
    const handleSubmit = async e => {
      e.preventDefault();
      const token = await loginUser({
@@ -41,7 +44,7 @@ async function loginUser(credentials) {
    return (
  
     <div className="login-wrapper">
-      <h1>Indentify your ass!!</h1>
+      <h1>Identify your ass!!</h1>
       
       <form>
           <label>
