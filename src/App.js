@@ -12,9 +12,9 @@ import ShopPage from "./Components/shopPage";
 
 const App = () => {
   const [token, setToken] = useState();
-  if(!token) {
-    return <LoginPage setToken={setToken} />
-  }
+ // if(!token) {
+//    return <LoginPage setToken={setToken} />
+//  }
   return (
     <React.Fragment>
       <div className="App">
