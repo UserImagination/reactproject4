@@ -1,23 +1,20 @@
 import "./NavbarStyles.css";
 import {Link} from 'react-router-dom';
 
-const User = (props) => {
-  return (
-    <div>
-      Name : {props.name} {props.lastname}
-    </div>
-  );
-}
 
-function Navbar() {
+// const Person = (props) => {
+//   return { firstname: props.firstname, lastname: props.lastname }
+// }
+// debugger;
+function Navbar(props) {
   return (
     <>
       <nav>
         <a href="index.html">
           <svg
             id="logo-64"
-            width="100"
-            height="100"
+            width="70"
+            height="70"
             viewBox="0 0 50 50"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -75,18 +72,19 @@ function Navbar() {
           </svg>
         </a>
         <div>
-          <li><a className="active" href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/shop'>Shop</Link></li>
+          <li><Link to='/blog'>Blog</Link></li>
+          
           <li><Link to='/contact'>Contact</Link></li>
+          <li><Link to='/login'>Login</Link></li>
         </div>
 
         <div className="Person">
-
-          <p><User name="Vote for" lastname="Pedro"/>
-            <button>Login</button>
-          </p>
+          <p>Logged as </p>
+          <p>{props.username}</p>
+          {/*<p>{props.Person.lastname}</p>*/}
+          
         </div>
         <div id="mobile">
           <i className="fas fa-bars"></i>

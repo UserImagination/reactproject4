@@ -16,7 +16,10 @@ class ContactPage extends React.Component {
       <div>
         <Link to='/'>link to original page</Link>
         <button>This does nothing</button>
-        <h1>This is the About Us Page Sucka</h1>
+        <h1>This is the Contact Us Page Sucka</h1>
+        <h4>Do not hire us right now. At the moment we are breaking other projects. 
+        <p>Sincerely </p>
+        Cat in the hat.-</h4>
       </div>
     );
   }
