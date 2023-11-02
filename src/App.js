@@ -12,9 +12,10 @@ import ShopPage from "./Components/shopPage";
 
 const App = () => {
   const [token, setToken] = useState();
- // if(!token) {
-//    return <LoginPage setToken={setToken} />
-//  }
+  
+  if(!token) {
+    return <LoginPage setToken={setToken} />  //This function checks if the user has already logged in
+  }
   return (
     <React.Fragment>
       <div className="App">
