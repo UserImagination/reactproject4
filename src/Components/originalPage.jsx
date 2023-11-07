@@ -42,14 +42,14 @@ class OriginalPage extends React.Component {
 // ******** HIDE STATE ******* //
 // *************************** //
 //const [showText, setShowText] = useState(true); // boolean
-  toggleText = () => {
-    if(this.state.show === true) {
-      this.setState({show: false})
-    }
-    if(this.state.show === false) {
-      this.setState({show: true})
-    }
+toggleText = () => {
+  if(this.state.show === true) {
+    this.setState({show: false})
   }
+  if(this.state.show === false) {
+    this.setState({show: true})
+  }
+}
 
 // *************************** //
 // ******** GET DEF ********** //
@@ -65,9 +65,34 @@ class OriginalPage extends React.Component {
         'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
       }
     };
+
+    try {
+      const response = await axios.request(options);
+
       axios.request(options).then((response) => {
-       this.setState({data: response.data})
-      })
+        this.setState({data: response.data}) 
+       })
+      
+      if (response.status === 200) {
+        // Data is available; set it in the state
+        this.setState({ data: response.data });
+      } else if (response.status === 404) {
+        // Handle the 404 error when no definition is found
+        this.setState({ data: { message: 'Definition not found' } });
+      } else {
+        // Handle other errors
+        console.error('An error occurred:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  
+   
+      // * MOVED TO INSIDE OF TRY * //
+      // axios.request(options).then((response) => {
+      //  this.setState({data: response.data}) 
+      // })
+
   }
 // *************************** //
 // ******* INPUT STATE 2****** //
