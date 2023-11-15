@@ -158,7 +158,38 @@ class OriginalPage extends React.Component {
           <button onClick={this.toggleText}>Show/Hide</button>
           {this.state.show && <h1>MEOW</h1>}
         </p>
-
+        
+        {/*<div className='centered'>*/}
+        {/*  <Card className='width'>*/}
+        {/*    <CardContent>*/}
+        {/*      <Typography variant='h3'  gutterBottom>*/}
+        {/*        OK!!!*/}
+        {/*      </Typography>*/}
+        {/*      <Typography variant="h4" component="div">*/}
+        {/*      </Typography>*/}
+        {/*      /!* <Typography sx={{ mb: 1.5 }} color="text.secondary">*/}
+        {/*  definition*/}
+        {/*</Typography> *!/*/}
+        {/*      <Typography variant="body1">*/}
+        {/*        <div>*/}
+        {/*          /!* <h2>Definition:</h2> *!/*/}
+        {/*          {this.state.data && (*/}
+        {/*            <ul>*/}
+        {/*              {this.state.data.definitions.map((definition, index) => (*/}
+        {/*                <li key={index}>{definition.definition}</li>*/}
+        {/*              ))}*/}
+        {/*            </ul>*/}
+        {/*          )}*/}
+        {/*        </div>*/}
+        {/*        <br />*/}
+        {/*        {'"very good"'}*/}
+        {/*      </Typography>*/}
+        {/*    </CardContent>*/}
+        {/*    <CardActions>*/}
+        {/*      <Button size="small">Card Button</Button>*/}
+        {/*    </CardActions>*/}
+        {/*  </Card>*/}
+        {/*</div>*/}
         
         <p>
           <input id="searchWord" type="text" onChange={this.handleInputChange2}></input>
@@ -166,8 +197,6 @@ class OriginalPage extends React.Component {
         <p>
           <button onClick={this.getDef}>Get Definition</button>
         </p>
-
-        <Link to='/page2'>link to another page</Link>
 
         {/*update this to map cards!!!!*/}
         <div className='centered shadow'>
@@ -183,6 +212,7 @@ class OriginalPage extends React.Component {
             }
           </ul>
         </div>
+        <Link to='/page2'>link to another page</Link>
       </div>
     )
   }
