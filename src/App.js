@@ -16,18 +16,23 @@ const App = () => {
   if(!token) {
     return <LoginPage setToken={setToken} />  //This function checks if the user has already logged in
   }
+  
+  const username = (data) => {
+    console.log(data);
+    return data
+  }
   return (
     <React.Fragment>
       <div className="App">
         <header className="App-header">
-          <Navbar/>
+          <Navbar Person={ username }/>
         </header>
         
         <Routes>
-          <Route path="/" element={<OriginalPage/>} />       
-          <Route path="/contact" element={<ContactPage/>}/>
-          <Route path="/login" element={<LoginPage/> }/>
-          <Route path="/shop" element={<ShopPage/>} exact/>
+          <Route path="/" element={<OriginalPage />} />       
+          <Route path="/contact" element={<ContactPage />}/>
+          <Route path="/login" element={<LoginPage func={ username } /> }/>
+          <Route path="/shop" element={<ShopPage />} exact />
         </Routes>
       </div>
     </React.Fragment>
