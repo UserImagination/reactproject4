@@ -13,9 +13,9 @@ import ShopPage from "./Components/shopPage";
 const App = () => {
   const [token, setToken] = useState();
   
-  if(!token) {
-    return <LoginPage setToken={setToken} />  //This function checks if the user has already logged in
-  }
+  // if(!token) {
+  //   return <LoginPage setToken={setToken} />  //This function checks if the user has already logged in
+  // }
   
   const username = (data) => {
     console.log(data);

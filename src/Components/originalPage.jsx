@@ -2,10 +2,10 @@
 import axios from "axios";
 import React from 'react';
 import { Link } from "react-router-dom";
-
-
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid, CardContent, Typography, Card } from '@mui/material';
 
 import './originalPage.css'; 
@@ -22,6 +22,7 @@ class OriginalPage extends React.Component {
       show: true,
     }
     this.getDef = this.getDef.bind(this);
+    this.Remove = this.Remove.bind(this);
   }
 
   // *************************** //
@@ -56,6 +57,13 @@ class OriginalPage extends React.Component {
     if (this.state.show === false) {
       this.setState({ show: true })
     }
+  }
+
+  // *************************** //
+  // ******** DELETE *********** //
+  // *************************** //
+  Remove() {
+    console.log(this);
   }
 
   // *************************** //
@@ -103,13 +111,10 @@ class OriginalPage extends React.Component {
     } catch (error) {
       console.error('An error occurred:', error);
     }
-
-
     // * MOVED TO INSIDE OF TRY * //
     // axios.request(options).then((response) => {
     //  this.setState({data: response.data}) 
     // })
-
   }
   // *************************** //
   // ******* INPUT STATE 2****** //
@@ -158,12 +163,12 @@ class OriginalPage extends React.Component {
           <button onClick={this.getDef}>Get Definition</button>
         </p>
 
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 6, sm: 2, md: 4 }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 6, sm: 2, md: 4 }} className='flex-container'>
             {this.state.data && (this.state.data.length > 0) && this.state.data.map(function(iterator, index) {
                return (
-                 <Grid item xs={6}>
-                    <div className='centered' key={index}>
-                      <Card className='width'>
+                 <Grid item xs={6} md={2}>
+                    <div className='' key={index}>
+                      <Card className='' key={index}>
                         <CardContent>
                           <Typography variant='h5'  gutterBottom>
                             Word: {iterator.word}
@@ -178,6 +183,9 @@ class OriginalPage extends React.Component {
                             })
                             }
                             </ul>
+                            <IconButton aria-label="delete" size="small" className="buttonTown" onClick={() => this.Remove}>
+                          <DeleteIcon fontSize="inherit" />
+                          </IconButton>
                           </div>
                         </CardContent>
                       </Card>
