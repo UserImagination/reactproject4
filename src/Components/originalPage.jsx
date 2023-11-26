@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid, CardContent, Typography, Card } from '@mui/material';
 
-import './originalPage.css'; 
+import './originalPage.css';
 
 
 class OriginalPage extends React.Component {
@@ -62,8 +62,8 @@ class OriginalPage extends React.Component {
   // *************************** //
   // ******** DELETE *********** //
   // *************************** //
-  Remove() {
-    console.log(this);
+  Remove(index) {
+    console.log(index);
   }
 
   // *************************** //
@@ -89,7 +89,7 @@ class OriginalPage extends React.Component {
       }
       axios.request(options).then((response) => {
         result.push(response.data)
-        if(result.length > 0) {
+        if (result.length > 0) {
           this.setState(prevState => {
             return {
               ...prevState,
@@ -155,7 +155,7 @@ class OriginalPage extends React.Component {
           <button onClick={this.toggleText}>Show/Hide</button>
           {this.state.show && <h1>MEOW</h1>}
         </p>
-        
+
         <p>
           <input id="searchWord" type="text" onChange={this.handleInputChange2}></input>
         </p>
@@ -164,37 +164,34 @@ class OriginalPage extends React.Component {
         </p>
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 6, sm: 2, md: 4 }} className='flex-container'>
-            {this.state.data && (this.state.data.length > 0) && this.state.data.map(function(iterator, index) {
-               return (
-                 <Grid item xs={6} md={2}>
-                    <div className='' key={index}>
-                      <Card className='' key={index}>
-                        <CardContent>
-                          <Typography variant='h5'  gutterBottom>
-                            Word: {iterator.word}
-                          </Typography>
-                          <Typography variant="h6" component="div">
-                            Definition(s):
-                          </Typography>
-                          <div>
-                            <ul>
-                            {iterator.definitions.map(function(item, index) {
-                              return(<li key={index}>{item.definition}</li>)
-                            })
-                            }
-                            </ul>
-                            <IconButton aria-label="delete" size="small" className="buttonTown" onClick={() => this.Remove}>
-                          <DeleteIcon fontSize="inherit" />
-                          </IconButton>
-                          </div>
-                        </CardContent>
-                      </Card>
+          {this.state.data && (this.state.data.length > 0) && this.state.data.map((iterator, index) => ( // Changed the function keyword to an arrow function
+            <Grid item xs={6} md={2} key={index}>
+              <div className=''>
+                <Card className='' key={index}>
+                  <CardContent>
+                    <Typography variant='h5' gutterBottom>
+                      Word: {iterator.word}
+                    </Typography>
+                    <Typography variant="h6" component="div">
+                      Definition(s):
+                    </Typography>
+                    <div>
+                      <ul>
+                        {iterator.definitions.map((item, index) => (
+                          <li key={index}>{item.definition}</li>
+                        ))}
+                      </ul>
+                      <IconButton aria-label="delete" size="small" className="buttonTown" onClick={() => this.Remove(index)} >
+                        <DeleteIcon fontSize="inherit" />
+                      </IconButton>
                     </div>
-                 </Grid>
-                )
-              })
-            }
+                  </CardContent>
+                </Card>
+              </div>
+            </Grid>
+          ))}
         </Grid>
+
         <Link to='/page2'>link to another page</Link>
         {/*<button onClick={this.debugger}>Deboooger</button>*/}
       </div>
