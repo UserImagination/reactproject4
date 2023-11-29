@@ -60,10 +60,16 @@ class OriginalPage extends React.Component {
   }
 
   // *************************** //
-  // ******** DELETE *********** //
+  // ****** DELETE/REMOVE ****** //
   // *************************** //
   Remove(index) {
-    console.log(index);
+    // Create a copy of the data array without the definition to be removed
+    const newData = this.state.data.filter((_, i) => i !== index);
+
+    // Update the state with the new data array
+    this.setState({
+      data: newData,
+    });
   }
 
   // *************************** //
@@ -72,6 +78,13 @@ class OriginalPage extends React.Component {
   async getDef(search) {
     search = document.getElementById("searchWord").value;
     //console.log(search);
+
+    // Check if the word has already been searched
+    if (this.state.data && this.state.data.some(item => item.word.toLowerCase() === search.toLowerCase())) {
+      console.log(`Definition for "${search}" already retrieved.`);
+      return;
+    }
+
     const options = {
       method: 'GET',
       url: `https://wordsapiv1.p.rapidapi.com/words/${search}/definitions`,
@@ -84,6 +97,13 @@ class OriginalPage extends React.Component {
     try {
       const response = await axios.request(options);
       let result = [];
+
+      // Check if the word has already been searched (again, for safety)
+      if (this.state.data && this.state.data.some(item => item.word.toLowerCase() === search.toLowerCase())) {
+        console.log(`Definition for "#{search}" already retrieved.`);
+        return;
+      }
+
       if (this.state.data && this.state.data.length > 0) {
         result.push(...this.state.data)
       }
@@ -181,7 +201,12 @@ class OriginalPage extends React.Component {
                           <li key={index}>{item.definition}</li>
                         ))}
                       </ul>
-                      <IconButton aria-label="delete" size="small" className="buttonTown" onClick={() => this.Remove(index)} >
+                      <IconButton 
+                      aria-label="delete"
+                      size="small"
+                      className="buttonTown"
+                      onClick={() => this.Remove(index)} 
+                      >
                         <DeleteIcon fontSize="inherit" />
                       </IconButton>
                     </div>
