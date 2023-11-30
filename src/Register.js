@@ -1,19 +1,22 @@
 import { useRef, useState, useEffect } from "react";
 import {faCheck, faTimes, faInfoCircle}from "@fortawesome/react-fontawesome";
-import { faFontAwesome } from "@fortawesome/free-brands-svg-icons";
 import { jsxDEV as _jsxDEV } from "react/jsx-dev-runtime";
 
 
-const USER_REGX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-const PWD_REGX= /^(?=.*[a-z])(?=.*[A-Z])(?.*[0-9])(?.*[!@#$%]).{8,24}$/;
+const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const PWD_REGEX= /^(?=.*[a-z])(?=.*[A-Z])(?.*[0-9])(?.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
-    const useRef = useRef();
+    const userRef = useRef();
     const errRef = errRef();
 
-    const[user, setPwd] = useState('');
+    const[user,setUser]= useState('');
+    const[validName, setValidName] = useState(false);
+    const[userFocus, setUserFocus] = useState(false);
+
+    const[pwd, setPwd] = useState('');
     const[validPwd, setValidPwd] = useState(false);
-    const[pwdFocus, setUPwdFocus] = useState(false);
+    const[pwdFocus, setPwdFocus] = useState(false);
 
     const[matchPwd, setMatchPwd] = useState('');
     const[validMatch, setValidMatch] = useState(false);
@@ -27,14 +30,14 @@ const Register = () => {
     },[])
 
     useEffect(()=>{
-        const result = USER_REGX.test(user);
+        const result = USER_REGEX.test(user);
         console.log(result);
         console.log(user);
         setValidName(result);
     }, [user])
 
     useEffect(()=>{
-        const result = PWD_REGX.test(pwd);
+        const result = PWD_REGEX.test(pwd);
         console.log(result);
         console.log(pwd);
         setValidPwd(result);
@@ -65,7 +68,7 @@ const Register = () => {
                 <input 
                 type="text"
                 id="username"
-                ref={useRef}
+                ref={userRef}
                 autocomplete="off"
                 onChange={(e) => setUser(e.target.value)}
                 required
@@ -77,7 +80,7 @@ const Register = () => {
             <p/>   
                 <p id="uidnote" className={userFocus && user &&
                 !validName ? "instructions" : "offscreen" }>
-                <FontAwesomeIcon icon={faInfoCircle}/>
+                <faFontAwesomeIcon icon={faInfoCircle}/>
                  4 to 24 characters. <br />
                  Must begin with a letter.<br />
                   Letters, numbers, underscores, hyphens allowed.
@@ -85,20 +88,20 @@ const Register = () => {
                     <label htmlFOR="username">
                     Username:
                     <span className={validName ? "valid" : "hide"}>
-                        <FontAwesomeIcon icon={faCheck}/>
+                        <faFontAwesomeIcon icon={faCheck}/>
                     </span>
                     <span className={validName || !user? "hide" : "invalid"}>
-                    <FontAwesomeIcon icon={faTimes}/>
+                    <faFontAwesomeIcon icon={faTimes}/>
                     </span>
                 </label>
 
                 <label htmlFOR="password">
                     Password:
                     <span className={validPwd ? "valid" : "hide"}>
-                        <FontAwesomeIcon icon={faCheck}/>
+                        <faFontAwesomeIcon icon={faCheck}/>
                     </span>
                     <span className={validPwd || !user? "hide" : "invalid"}>
-                    <FontAwesomeIcon icon={faTimes}/>
+                    <faFontAwesomeIcon icon={faTimes}/>
                     </span>
                 </label>
                 <input 
@@ -112,8 +115,8 @@ const Register = () => {
                 onBlur={() => setPwdFocus(false)}
                 />
                 <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
-                <FontAwesomeIcon icon={faInfoCircle}/>
-                 4 to 24 characters. <br />       
+                <faFontAwesomeIcon icon={faInfoCircle}/>
+                 8 to 24 characters. <br />       
                 must include uppercase and lowercase letters, a number and a special character.<br />
                 Allowed special characters : <span aria-label="exclamation mark">!</span>
                 <span aria-label="at symbol">@</span>
@@ -121,6 +124,14 @@ const Register = () => {
                 <span aria-label="dollar sign">$</span>
                 <span aria-label="percentage">%</span>
                 </p>
+
+                <label htmlFOR="confirm_pwd">
+                    confirm password :
+                    <span className={validMatch && matchPwd ? "valid" : "hide"}>
+                    <faFontAwesomeIcon icon={faCheck}/></span>
+                    <span> className={validMatch && !matchPwd ? "valid" : "hide"}
+                    <faFontAwesomeIcon icon={faTimes}/></span>
+                </label>
                 </form>
         </section >
     )
