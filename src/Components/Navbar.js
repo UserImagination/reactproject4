@@ -83,10 +83,12 @@ function Navbar() {
           <li><Link to='/contact'>Contact</Link></li>
           <li><Link to='/login'>Login</Link></li>
         </div>
-
+<div className="LogOut">
+  
+</div>
         <div className="Person">
           <p>Logged as </p>
-          <p><Person name="username" />
+          <p><Person name = "INPUT A VAR here for USERID" />
           <Person lastname="usersurname" />
           </p>
         </div>
