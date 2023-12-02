@@ -185,12 +185,12 @@ class OriginalPage extends React.Component {
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 6, sm: 2, md: 4 }} className='flex-container'>
           {this.state.data && (this.state.data.length > 0) && this.state.data.map((iterator, index) => ( // Changed the function keyword to an arrow function
-            <Grid item xs={6} md={2} key={index}>
-              <div className=''>
-                <Card className='' key={index}>
+            <Grid item xs={6} md={2} key={index} className=''>
+              <div className='overflow maxheight'>
+                <Card  key={index} className='minheight'>
                   <CardContent>
                     <Typography variant='h5' gutterBottom>
-                      Word: {iterator.word}
+                      {iterator.word}
                     </Typography>
                     <Typography variant="h6" component="div">
                       Definition(s):
