@@ -33,3 +33,13 @@
 .buttonTown {
     float: right;
 }
+.overflow {
+    overflow-y: scroll;
+    border: 2px solid pink;
+}
+.maxheight {
+    max-height: 300px;
+}
+.minheight {
+    min-height: 300px;
+}
