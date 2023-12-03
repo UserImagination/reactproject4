@@ -66,7 +66,7 @@ const Register = () => {
             }
             console.log(user,pwd);
           //  setSuccess(true);
-            // I would add here the axios call PONGA AQUI
+            // I would add here the axios call 
             try{
                 const response = await axios.post(REGISTER_URL,
                 JSON.stringify({user, pwd}),
