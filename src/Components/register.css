@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0; /* Light gray background for the page */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .container {
+    background-color: #ffffff; /* White background for the container */
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+  }
+
+
+
+  form {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-container {
+    background-color: #ffe6cc; /* Light orange background color */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px; /* Adjust as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+  }
+
+  label {
+    color: #333333; /* Dark gray text color for labels */
+    margin-bottom: 5px;
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid #dddddd; /* Light gray border */
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  /* Add styling for valid and invalid states */
+  .valid {
+    color: #4caf50; /* Green color for valid state */
+  }
+  
+  .invalid {
+    color: #f44336; /* Red color for invalid state */
+  }
+  
+  .instructions {
+    font-size: 12px;
+    color: #666666; /* Gray color for instructions */
+  }
+  
+  .offscreen {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  /* Additional styling for the FontAwesome icons */
+  .icon {
+    margin-left: 5px;
+  }
+  
+  /* Apply styles to specific elements */
+  #uidnote,
+  #pwdnote,
+  #confirmPwdNote {
+    margin-top: 5px;
+  }
+  
+  #uidnote .icon,
+  #pwdnote .icon,
+  #confirmPwdNote .icon {
+    color: #666666; /* Gray color for info circle icon */
+  }
