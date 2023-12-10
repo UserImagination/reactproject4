@@ -6,6 +6,8 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid, CardContent, Typography, Card } from '@mui/material';
 import './originalPage.css';
+import { toast } from 'react-toastify';
+
 
 class OriginalPage extends React.Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class OriginalPage extends React.Component {
     this.getDef = this.getDef.bind(this);
     this.Remove = this.Remove.bind(this);
   }
-
+ 
   // *************************** //
   // ******** NUM STATE ******** //
   // *************************** //
@@ -70,9 +72,19 @@ class OriginalPage extends React.Component {
   // ******** GET DEF ********** //
   // *************************** //
   async getDef() {
+    this.refs.inputField.value = '';
     let search = this.state.searchTerm;
-
+    // eslint-disable-next-line
+    !search ? toast("Please enter a search term", {position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",}) : search; 
     // Check if the word has already been searched
+ 
     if (this.state.data && this.state.data.some(item => item.word.toLowerCase() === search.toLowerCase())) {
       console.log(`Definition for "${search}" already retrieved.`);
       return;
@@ -91,6 +103,10 @@ class OriginalPage extends React.Component {
       const response = await axios.request(options);
 
       if (response.status === 200) {
+        if (this.state.data && this.state.data.some(item => item.word.toLowerCase() === response.data.word.toLowerCase())) {
+          console.log(`Definition for "${search}" already retrieved.`);
+          return;
+        }
         const newWordData = {
           word: search, // the searched word gets assigned to 'word'
           definitions: response.data.definitions // the array of retrieved definitions will be assigned to 'definitions'
@@ -147,7 +163,7 @@ class OriginalPage extends React.Component {
         </p>
 
         <p>
-          <input id="searchWord" type="text" onChange={this.handleInputChange2}></input>
+          <input ref="inputField" id="searchWord" type="text" onChange={this.handleInputChange2}></input>
         </p>
         <p>
           <button onClick={this.getDef}>Get Definition</button>
@@ -192,7 +208,7 @@ class OriginalPage extends React.Component {
             </Grid>
           ))}
         </Grid>
-
+        
         <Link to='/page2'>link to another page</Link>
         {/*<button onClick={this.debugger}>Deboooger</button>*/}
       </div>
