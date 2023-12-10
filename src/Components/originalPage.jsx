@@ -108,7 +108,7 @@ class OriginalPage extends React.Component {
           return;
         }
         const newWordData = {
-          word: search, // the searched word gets assigned to 'word'
+          word: response.data.word, // the searched word gets assigned to 'word'
           definitions: response.data.definitions // the array of retrieved definitions will be assigned to 'definitions'
         };
 
