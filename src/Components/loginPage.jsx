@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
-
-
 // class LoginPage extends React.Component {
   
 //   constructor(props) {
@@ -13,8 +11,6 @@ import PropTypes from 'prop-types';
 //     }
      
 //   }
-
-
 
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/login', {
