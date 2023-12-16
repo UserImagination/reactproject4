@@ -8,51 +8,16 @@ import { Grid, CardContent, Typography, Card } from '@mui/material';
 import './originalPage.css';
 import { toast } from 'react-toastify';
 
-
 class OriginalPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      num: 0,
       data: null, //this is where the api response might be held and then pointed to by our jsx template
       searchTerm: '',
-      inputValue: '',
-      show: true,
+      //inputValue: '',
     }
     this.getDef = this.getDef.bind(this);
     this.Remove = this.Remove.bind(this);
-  }
- 
-  // *************************** //
-  // ******** NUM STATE ******** //
-  // *************************** //
-
-  //const [num, setNum] = useState(0); // the 0 is the intial value of num, ie let num=0
-  // 
-  increaseNum = () => {
-    this.setState({ num: this.state.num + 1 });
-  };
-  decreaseNum = () => {
-    this.setState({ num: this.state.num - 1 });
-  }
-
-  // *************************** //
-  // ******** INPUT STATE ****** //
-  // *************************** //
-  handleInputChange = (event) => {
-    this.setState({ inputValue: event.target.value });
-  };
-
-  // *************************** //
-  // ******** HIDE STATE ******* //
-  // *************************** //
-  toggleText = () => {
-    if (this.state.show === true) {
-      this.setState({ show: false })
-    }
-    if (this.state.show === false) {
-      this.setState({ show: true })
-    }
   }
 
   // *************************** //
@@ -83,8 +48,8 @@ class OriginalPage extends React.Component {
       draggable: true,
       progress: undefined,
       theme: "dark",}) : search; 
+
     // Check if the word has already been searched
- 
     if (this.state.data && this.state.data.some(item => item.word.toLowerCase() === search.toLowerCase())) {
       console.log(`Definition for "${search}" already retrieved.`);
       return;
@@ -110,8 +75,7 @@ class OriginalPage extends React.Component {
         const newWordData = {
           word: response.data.word, // the searched word gets assigned to 'word'
           definitions: response.data.definitions // the array of retrieved definitions will be assigned to 'definitions'
-        };
-
+        };       
         // update the state based on the previous state
         this.setState(prevState => ({
           // creates a new array by spreading elements of the previous 'data' array and adding 'newWordData' to the end
@@ -143,31 +107,14 @@ class OriginalPage extends React.Component {
   render() {
     return (
       <div>
-        <p>{this.state.num}</p>
-        <p>
-          <button onClick={this.increaseNum}>Increase</button>
-        </p>
-
-        <p>
-          <button onClick={this.decreaseNum}>Decrease</button>
-        </p>
-
-        <p>
-          <input type="text" onChange={this.handleInputChange} />
-          <p>{this.state.inputValue}</p>
-        </p>
-
-        <p>
-          <button onClick={this.toggleText}>Show/Hide</button>
-          {this.state.show && <h1>MEOW</h1>}
-        </p>
-
+        <div className='centered'>
         <p>
           <input ref="inputField" id="searchWord" type="text" onChange={this.handleInputChange2}></input>
         </p>
         <p>
           <button onClick={this.getDef}>Get Definition</button>
         </p>
+        </div>
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 6, sm: 2, md: 4 }} className='flex-container'>
           {this.state.data && (this.state.data.length > 0) && this.state.data.map((iterator, index) => ( // Changed the function keyword to an arrow function
@@ -175,10 +122,10 @@ class OriginalPage extends React.Component {
               <div className='overflow maxheight'>
                 <Card key={index} className='minheight'>
                   <CardContent>
-                    <Typography variant='h5' gutterBottom>
+                    <Typography component={'span'} variant='h5' gutterBottom>
                       {iterator.word}
                     </Typography>
-                    <Typography variant="h6" component="div">
+                    <Typography component="div" variant="h6">
                       Definition(s):
                     </Typography>
 

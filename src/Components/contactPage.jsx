@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 class ContactPage extends React.Component {
   constructor(props) {
@@ -10,16 +9,26 @@ class ContactPage extends React.Component {
     }
   }
 
+  // *************************** //
+  // ******** INPUT STATE ****** //
+  // *************************** //
+  handleInputChange = (event) => {
+    this.setState({ inputValue: event.target.value });
+  };
 
   render() {
     return (
       <div>
-        <Link to='/'>link to original page</Link>
-        <button>This does nothing</button>
         <h1>This is the Contact Us Page Sucka</h1>
-        <h4>Do not hire us right now. At the moment we are breaking other projects. 
-        <p>Sincerely </p>
-        Cat in the hat.-</h4>
+        <h4>Do not hire us right now. At the moment we are breaking other projects. </h4>
+        <h4>Sincerely</h4>
+        <h4>Cat in the hat.-</h4>
+
+        <p>
+          <input type="text" onChange={this.handleInputChange} />
+          <br></br><br></br>
+          <span>{this.state.inputValue}</span>
+        </p>
       </div>
     );
   }

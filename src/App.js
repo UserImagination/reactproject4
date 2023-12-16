@@ -3,13 +3,12 @@ import React, {useState} from 'react';
 import {Routes, Route} from "react-router-dom";
 import OriginalPage from "./Components/originalPage";
 import Navbar from "./Components/Navbar"
+import BlogPage from "./Components/blogPage"
 import ContactPage from "./Components/contactPage";
 import LoginPage from "./Components/loginPage";
 import ShopPage from "./Components/shopPage";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
-//import BlogPage from ".Components/blogPage;"
 
 // a state is like a variable that stores data
 
@@ -32,7 +31,8 @@ const App = () => {
         </header>
         
         <Routes>
-          <Route path="/" element={<OriginalPage />} />       
+          <Route path="/" element={<OriginalPage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />}/>
           <Route path="/login" element={<LoginPage func={ username } /> }/>
           <Route path="/shop" element={<ShopPage />} exact />
