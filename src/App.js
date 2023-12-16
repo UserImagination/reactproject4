@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // a state is like a variable that stores data
 
 const App = () => {
-  const [token, setToken] = useState();
+  const [] = useState();
   
   // if(!token) {
   //   return <LoginPage setToken={setToken} />  //This function checks if the user has already logged in

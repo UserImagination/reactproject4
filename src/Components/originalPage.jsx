@@ -39,22 +39,23 @@ class OriginalPage extends React.Component {
   async getDef() {
     this.refs.inputField.value = '';
     let search = this.state.searchTerm;
-    // eslint-disable-next-line
-    !search ? toast("Please enter a search term", {position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",}) : search; 
-
-    // Check if the word has already been searched
-    if (this.state.data && this.state.data.some(item => item.word.toLowerCase() === search.toLowerCase())) {
-      console.log(`Definition for "${search}" already retrieved.`);
+    if(!search) {
+      toast("Please enter a search term", {position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",})
+      this.clearSearch();
       return;
     }
-
+    // Check if the word has already been searched
+    // if (this.state.data && this.state.data.some(item => item.word.toLowerCase() === search.toLowerCase())) {
+    //   console.log(`Definition for "${search}" already retrieveddddddddddddddddddddddddddddddd.`);
+    //   return;
+    // }
     const options = {
       method: 'GET',
       url: `https://wordsapiv1.p.rapidapi.com/words/${search}/definitions`,
@@ -63,13 +64,21 @@ class OriginalPage extends React.Component {
         'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
       }
     };
-
     try {
       const response = await axios.request(options);
-
       if (response.status === 200) {
         if (this.state.data && this.state.data.some(item => item.word.toLowerCase() === response.data.word.toLowerCase())) {
+          toast(`Definition for "${search}" already retrieved.`, {position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            type: "error",
+            theme: "dark",})
           console.log(`Definition for "${search}" already retrieved.`);
+          this.clearSearch();
           return;
         }
         const newWordData = {
@@ -91,7 +100,12 @@ class OriginalPage extends React.Component {
       }
     } catch (error) {
       console.error('An error occurred:', error);
+      this.clearSearch()
     }
+    this.clearSearch();
+  }
+  clearSearch = () => {
+    this.setState( {searchTerm: ''})
   }
 
   // *************************** //
