@@ -106,13 +106,15 @@ class OriginalPage extends React.Component {
   }
   render() {
     return (
-      <div>     
+      <div>
+        <div className='centered'>
         <p>
           <input ref="inputField" id="searchWord" type="text" onChange={this.handleInputChange2}></input>
         </p>
         <p>
           <button onClick={this.getDef}>Get Definition</button>
         </p>
+        </div>
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 6, sm: 2, md: 4 }} className='flex-container'>
           {this.state.data && (this.state.data.length > 0) && this.state.data.map((iterator, index) => ( // Changed the function keyword to an arrow function
@@ -123,7 +125,7 @@ class OriginalPage extends React.Component {
                     <Typography component={'span'} variant='h5' gutterBottom>
                       {iterator.word}
                     </Typography>
-                    <Typography component={'span'} variant="h6" component="div">
+                    <Typography component="div" variant="h6">
                       Definition(s):
                     </Typography>
 

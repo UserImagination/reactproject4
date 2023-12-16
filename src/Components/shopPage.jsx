@@ -24,7 +24,7 @@ class ShopPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='centered'>
         <p>{this.state.num}</p>
         <p>
           <button onClick={this.increaseNum}>Increase</button>

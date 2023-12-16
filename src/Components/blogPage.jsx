@@ -1,4 +1,5 @@
 import React from 'react';
+import './originalPage.css';
 
 class BlogPage extends React.Component {
   constructor(props) {
@@ -24,11 +25,9 @@ class BlogPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>
-          <button onClick={this.toggleText}>I-Spy with my-Stinky eye.</button>
-          {this.state.show && <h1>This is THE Blog PAGE</h1>}
-        </p>
+      <div className='centered'>
+        <button onClick={this.toggleText}>I-Spy with my-Stinky eye.</button>
+        {this.state.show && <h1>This is THE Blog PAGE</h1>}
       </div>
     );
   }
