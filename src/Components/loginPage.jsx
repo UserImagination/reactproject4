@@ -62,8 +62,6 @@ async function loginUser(credentials) {
 
 
 
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
-}
-
-//export default LoginPage;
+// Login.propTypes = {
+//   setToken: PropTypes.func.isRequired
+// }
