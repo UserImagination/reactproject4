@@ -9,6 +9,7 @@ import LoginPage from "./Components/loginPage";
 import ShopPage from "./Components/shopPage";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import TiltImage from "./Components/tiltImage";
 
 // a state is like a variable that stores data
 
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/contact" element={<ContactPage />}/>
           <Route path="/login" element={<LoginPage func={ username } /> }/>
           <Route path="/shop" element={<ShopPage />} exact />
+          <Route path="/tilt" element={<TiltImage />} />
         </Routes>
 
         <ToastContainer />
